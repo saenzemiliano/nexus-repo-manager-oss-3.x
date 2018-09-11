@@ -1,4 +1,4 @@
-# Nexus Repository Manager OSS 3.xpenSSL Certificate Authority
+# Nexus Repository Manager OSS 3.xpen
 The world's first and only universal repository solution that's FREE to use.
 
 Manage these formats:
