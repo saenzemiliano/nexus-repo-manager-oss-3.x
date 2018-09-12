@@ -1,4 +1,4 @@
-# Nexus Repository Manager OSS 3.xpen
+# Nexus Repository Manager OSS 3.x
 The world's first and only universal repository solution that's FREE to use.
 
 Manage these formats:
@@ -23,6 +23,7 @@ Requirements covered:
 - [LDAP Integration](#ldap-integration)
 - [HTTP and HTTPS Request and Proxy Settings](#http-and-https-request-and-proxy-settings)
 - [Configure and Run the Backup Task](#configure-and-run-the-backup-task)
+- [Configuring Apache Maven](#configuring-apache-maven)
 - [License](#license)
 
 
@@ -95,6 +96,66 @@ To configure and run a new task for database backup, review the steps in Configu
 * Configuration: general administrative configurations such as scheduled tasks, email server configuration
 * Security: all user and access rights management content
 
+## Configuring Apache Maven
+To do this, you add a mirror configuration and override the default configuration for the central repository in your ~/.m2/settings.xml, shown below:
+```
+<settings>
+  <mirrors>
+    <mirror>
+      <!--This sends everything else to /public -->
+      <id>nexus</id>
+      <mirrorOf>*</mirrorOf>
+      <url>http://localhost:8081/repository/maven-public/</url>
+    </mirror>
+  </mirrors>
+  <profiles>
+    <profile>
+      <id>nexus</id>
+      <!--Enable snapshots for the built in central repo to direct -->
+      <!--all requests to nexus via the mirror -->
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+      </repositories>
+     <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <!--make the profile active all the time -->
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+</settings>
+```
+
+Deployment to a repository is configured in the pom.xml for the respective project in the distributionManagement section. Using the default repositories of the repository manager:
+```
+<project>
+...
+<distributionManagement>
+    <repository>
+      <id>nexus</id>
+      <name>Releases</name>
+      <url>http://localhost:8081/repository/maven-releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus</id>
+      <name>Snapshot</name>
+      <url>http://localhost:8081/repository/maven-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+...
+```
 ## License
 
 This project is licensed under the GNU GPLv3 - see the [LICENSE.md](LICENSE.md) file for details
