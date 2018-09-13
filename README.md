@@ -100,6 +100,13 @@ To configure and run a new task for database backup, review the steps in Configu
 To do this, you add a mirror configuration and override the default configuration for the central repository in your ~/.m2/settings.xml, shown below:
 ```
 <settings>
+  <servers>
+    <server>
+      <id>nexus</id>
+      <username>admin</username>
+      <password>admin123</password>
+    </server>
+  </servers>
   <mirrors>
     <mirror>
       <!--This sends everything else to /public -->
@@ -140,21 +147,49 @@ To do this, you add a mirror configuration and override the default configuratio
 
 Deployment to a repository is configured in the pom.xml for the respective project in the distributionManagement section. Using the default repositories of the repository manager:
 ```
-<project>
-...
-<distributionManagement>
-    <repository>
-      <id>nexus</id>
-      <name>Releases</name>
-      <url>http://localhost:8081/repository/maven-releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>nexus</id>
-      <name>Snapshot</name>
-      <url>http://localhost:8081/repository/maven-snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
-...
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example.nexus</groupId>
+    <artifactId>nexus-maven-hello-world</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Releases</name>
+            <url>http://localhost:8081/repository/maven-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Snapshot</name>
+            <url>http://localhost:8081/repository/maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+    </dependencies>
+
+
+
+</project>
 ```
 ## License
 
