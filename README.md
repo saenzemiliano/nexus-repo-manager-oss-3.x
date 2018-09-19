@@ -9,6 +9,8 @@ Manage these formats:
 * [Download](https://www.sonatype.com/download-oss-sonatype) - Download
 * [Documentation](https://help.sonatype.com/repomanager3) - Documentation
 * [Repository](https://github.com/sonatype/nexus-public) - Repository
+* [POM Reference](http://maven.apache.org/pom.html) - POM Reference
+* [Plugins](https://maven.apache.org/plugins) - Plugins
 
 ## Disclaimer
 This configuration example shows a typical case inside an organization. If you need more information, go to the official site.
