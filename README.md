@@ -10,6 +10,7 @@ Manage these formats:
 * [Documentation](https://help.sonatype.com/repomanager3) - Documentation
 * [Repository](https://github.com/sonatype/nexus-public) - Repository
 * [POM Reference](http://maven.apache.org/pom.html) - POM Reference
+* [Settings Reference](https://maven.apache.org/settings.html) - Settings Reference
 * [Plugins](https://maven.apache.org/plugins) - Plugins
 
 ## Disclaimer
@@ -18,6 +19,8 @@ Requirements covered:
 * Enterprise Proxy
 * LDAP Authentication
 * Configuring Authentication
+* Software configuration management (SVN)
+* Deploy the built artifact to the remote repository (NEXUS)
 * Automatic Backup 
 
 ## Table of Contents
