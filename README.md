@@ -17,6 +17,7 @@ This configuration example shows a typical case inside an organization. If you n
 Requirements covered:
 * Enterprise Proxy
 * LDAP Authentication
+* Configuring Authentication
 * Automatic Backup 
 
 ## Table of Contents
@@ -26,6 +27,7 @@ Requirements covered:
 - [HTTP and HTTPS Request and Proxy Settings](#http-and-https-request-and-proxy-settings)
 - [Configure and Run the Backup Task](#configure-and-run-the-backup-task)
 - [Configuring Apache Maven](#configuring-apache-maven)
+- [Configuring Authentication](#configuring-authentication)
 - [License](#license)
 
 
@@ -193,6 +195,47 @@ Deployment to a repository is configured in the pom.xml for the respective proje
 
 </project>
 ```
+
+## Configuring Authentication
+Most public repositories requires developers to authenticate first before they can pull the source from the repository. For repositories requiring authentication, the scm plugin needs to be configured in one of the following ways:
+
+In the poml.xml
+```
+<project>
+  ...
+  <build>
+    ...
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-scm-plugin</artifactId>
+        <version>1.11.1</version>
+        <configuration>
+          <username>username</username>
+          <password>password</password>
+        </configuration>
+      </plugin>
+    </plugins>
+    ...
+  </build>
+  ...
+</project>
+```
+In the settings.xml via a server entry, using the host name from the connection URL as the server id
+```
+<settings>
+  ...
+  <servers>
+    <server>
+      <id>hostname</id>
+      <username>username</username>
+      <password>password</password>
+    </server>
+  </servers>
+  ...
+</settings>
+```
+
 ## License
 
 This project is licensed under the GNU GPLv3 - see the [LICENSE.md](LICENSE.md) file for details
