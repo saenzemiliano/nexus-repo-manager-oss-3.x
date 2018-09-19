@@ -200,31 +200,7 @@ Deployment to a repository is configured in the pom.xml for the respective proje
 ```
 
 ## Configuring Authentication
-Most public repositories requires developers to authenticate first before they can pull the source from the repository. For repositories requiring authentication, the scm plugin needs to be configured in one of the following ways:
-
-In the poml.xml
-```
-<project>
-  ...
-  <build>
-    ...
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-scm-plugin</artifactId>
-        <version>1.11.1</version>
-        <configuration>
-          <username>username</username>
-          <password>password</password>
-        </configuration>
-      </plugin>
-    </plugins>
-    ...
-  </build>
-  ...
-</project>
-```
-In the settings.xml via a server entry, using the host name from the connection URL as the server id
+Most public repositories requires developers to authenticate first before they can pull the source from the repository. In the settings.xml via a server entry, using the host name from the connection URL as the server id
 ```
 <settings>
   ...
