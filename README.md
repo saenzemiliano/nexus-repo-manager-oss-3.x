@@ -11,6 +11,7 @@ Manage these formats:
 * [Repository](https://github.com/sonatype/nexus-public) - Repository
 * [POM Reference](http://maven.apache.org/pom.html) - POM Reference
 * [Settings Reference](https://maven.apache.org/settings.html) - Settings Reference
+* [Maven Release Plugin](http://maven.apache.org/maven-release/maven-release-plugin/index.html) - Maven Release Plugin
 * [Plugins](https://maven.apache.org/plugins) - Plugins
 
 ## Disclaimer
@@ -32,6 +33,7 @@ Requirements covered:
 - [Deployment with the Maven Deploy Plugin](#deployment-with-the-maven-deploy-plugin)
 - [Deployment with the Nexus Staging Maven Plugin](#deployment-with-the-nexus-staging-maven-plugin)
 - [Configuring Authentication](#configuring-authentication)
+- [Plugin Usage](https://maven.apache.org/settings.html) - Settings Reference
 - [License](#license)
 
 
@@ -376,6 +378,21 @@ Most public repositories requires developers to authenticate first before they c
   </servers>
   ...
 </settings>
+```
+## Plugin Usage
+Prepare for a release in SCM.
+```
+mvn release:prepare -DdryRun=true
+```
+
+Perform a release from SCM.
+```
+mvn release:perform
+```
+
+Clean up after a release preparation.
+```
+mvn release:clean
 ```
 
 ## License
