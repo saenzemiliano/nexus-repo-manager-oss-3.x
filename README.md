@@ -33,7 +33,7 @@ Requirements covered:
 - [Deployment with the Maven Deploy Plugin](#deployment-with-the-maven-deploy-plugin)
 - [Deployment with the Nexus Staging Maven Plugin](#deployment-with-the-nexus-staging-maven-plugin)
 - [Configuring Authentication](#configuring-authentication)
-- [Plugin Usage](https://maven.apache.org/settings.html) - Settings Reference
+- [Plugin Usage](https://maven.apache.org/settings.html)
 - [License](#license)
 
 
