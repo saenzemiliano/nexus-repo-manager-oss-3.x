@@ -364,6 +364,75 @@ Your pom.xml
 </project>
 ```
 
+Your minimal pom.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- The Basics -->
+    <groupId>org.example.nexus</groupId>
+    <artifactId>nexus-maven-hello-world</artifactId>
+    <version>1.4.9-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+
+    <distributionManagement>
+         <repository>
+             <id>nexus</id>
+             <name>Releases</name>
+             <url>http://localhost:8081/repository/maven-releases</url>
+         </repository>
+         <snapshotRepository>
+             <id>nexus</id>
+             <name>Snapshot</name>
+             <url>http://localhost:8081/repository/maven-snapshots</url>
+         </snapshotRepository>
+     </distributionManagement>
+
+
+     <dependencies>
+         <dependency>
+             <groupId>junit</groupId>
+             <artifactId>junit</artifactId>
+             <version>4.12</version>
+             <scope>test</scope>
+         </dependency>
+         <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <!-- It's used on run/debug configurations with command line: compile exec:java -->
+        <exec.mainClass>org.example.nexus.Main</exec.mainClass>
+    </properties>
+
+    <!-- Build Settings -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.2</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <!-- More Project Information -->
+
+    <!-- Environment Settings -->
+    <scm>
+        <developerConnection>scm:svn:http://localhost:8080/svn/nexus-repo-manager-oss-3.x/trunk</developerConnection>
+    </scm>
+</project>
+```
 ## Configuring Authentication
 Most public repositories requires developers to authenticate first before they can pull the source from the repository. In the settings.xml via a server entry, using the host name from the connection URL as the server id
 ```
