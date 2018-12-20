@@ -12,6 +12,7 @@ Manage these formats:
 * [POM Reference](http://maven.apache.org/pom.html) - POM Reference
 * [Settings Reference](https://maven.apache.org/settings.html) - Settings Reference
 * [Maven Release Plugin](http://maven.apache.org/maven-release/maven-release-plugin/index.html) - Maven Release Plugin
+* [How to Deploy the Artifacts of a Project to Nexus, with Maven](https://blog.sonatype.com/maven-deploy-to-nexus) - How to Deploy the Artifacts of a Project to Nexus, with Maven
 * [Plugins](https://maven.apache.org/plugins) - Plugins
 
 ## Disclaimer
