@@ -260,7 +260,8 @@ Your ~/.m2/settings.xml
 Your pom.xml
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <!-- The Basics -->
@@ -271,27 +272,27 @@ Your pom.xml
 
 
     <distributionManagement>
-         <repository>
-             <id>nexus</id>
-             <name>Releases</name>
-             <url>http://localhost:8081/repository/maven-releases</url>
-         </repository>
-         <snapshotRepository>
-             <id>nexus</id>
-             <name>Snapshot</name>
-             <url>http://localhost:8081/repository/maven-snapshots</url>
-         </snapshotRepository>
-     </distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Releases</name>
+            <url>http://localhost:8081/repository/maven-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Snapshot</name>
+            <url>http://localhost:8081/repository/maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 
-     <dependencies>
-         <dependency>
-             <groupId>junit</groupId>
-             <artifactId>junit</artifactId>
-             <version>4.12</version>
-             <scope>test</scope>
-         </dependency>
-         <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -314,114 +315,33 @@ Your pom.xml
                 <configuration>
                     <tagNameFormat>v@{project.version}</tagNameFormat>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <releaseProfiles>releases</releaseProfiles>
                 </configuration>
             </plugin>
-        </plugins>
-    </build>
-    <!-- More Project Information -->
-
-    <!-- Environment Settings -->
-    <scm>
-        <connection>scm:svn:http://localhost:8080/svn/nexus-repo-manager-oss-3.x/trunk</connection>
-        <developerConnection>scm:svn:http://localhost:8080/svn/nexus-repo-manager-oss-3.x/trunk</developerConnection>
-        <url>http://localhost:8080/svn/nexus-repo-manager-oss-3.x/trunk</url>
-    </scm>
-    <profiles>
-        <profile>
-            <id>releases</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-deploy-plugin</artifactId>
-                        <configuration>
-                            <skip>true</skip>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.7</version>
-                        <executions>
-                            <execution>
-                                <id>default-deploy</id>
-                                <phase>deploy</phase>
-                                <goals>
-                                    <goal>deploy</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <serverId>svn</serverId>
-                            <nexusUrl>http://localhost:8081/repository</nexusUrl>
-                            <skipStaging>true</skipStaging>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-</project>
-```
-
-Your minimal pom.xml
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <!-- The Basics -->
-    <groupId>org.example.nexus</groupId>
-    <artifactId>nexus-maven-hello-world</artifactId>
-    <version>1.4.9-SNAPSHOT</version>
-    <packaging>jar</packaging>
-
-
-    <distributionManagement>
-         <repository>
-             <id>nexus</id>
-             <name>Releases</name>
-             <url>http://localhost:8081/repository/maven-releases</url>
-         </repository>
-         <snapshotRepository>
-             <id>nexus</id>
-             <name>Snapshot</name>
-             <url>http://localhost:8081/repository/maven-snapshots</url>
-         </snapshotRepository>
-     </distributionManagement>
-
-
-     <dependencies>
-         <dependency>
-             <groupId>junit</groupId>
-             <artifactId>junit</artifactId>
-             <version>4.12</version>
-             <scope>test</scope>
-         </dependency>
-         <!-- https://mvnrepository.com/artifact/log4j/log4j -->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
-    </dependencies>
-
-    <properties>
-        <!-- It's used on run/debug configurations with command line: compile exec:java -->
-        <exec.mainClass>org.example.nexus.Main</exec.mainClass>
-    </properties>
-
-    <!-- Build Settings -->
-    <build>
-        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.4.2</version>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.1</version>
                 <configuration>
-                    <tagNameFormat>v@{project.version}</tagNameFormat>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.5.1</version>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <serverId>nexus</serverId>
+                    <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
+                    <skipStaging>true</skipStaging>
                 </configuration>
             </plugin>
         </plugins>
